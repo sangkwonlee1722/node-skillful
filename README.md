@@ -33,11 +33,11 @@ npm run dev
 
 # API 명세서 URL
 
-https://docs.google.com/spreadsheets/d/1-_HMdxZOUkmOLYcTqN8UHypJoMVHqESIze3s_gbDywo/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/18PdiKfktUZYCGHUO8g4qtRMeJm8nZCyWcON6vYiB1e8/edit#gid=0
 
 # ERD URL
 
-https://www.erdcloud.com/d/zzo9JoKE9Z7zfHTwq
+https://www.erdcloud.com/d/kdXWpBaAwX2RhztEE
 
 # 더 고민해 보기
 
