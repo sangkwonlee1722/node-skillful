@@ -11,7 +11,6 @@ Content-Type: application/json
    "name": "관리자"
 }
 
-
 ### 로그인
 POST {{host}}/signin
 Content-Type: application/json
