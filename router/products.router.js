@@ -44,4 +44,83 @@ productsRouter.post('', needSignin, async (req, res) => {
   }
 });
 
+// 목록 조회
+productsRouter.get('', async (req, res) => {
+  try {
+    const { sort } = req.query;
+    let upperCaseSort = sort?.toUpperCase();
+
+    if (upperCaseSort !== 'ASC' && upperCaseSort !== 'DESC') {
+      upperCaseSort = 'DESC';
+    }
+
+    const products = await Products.findAll({
+      attributes: [
+        'id',
+        'title',
+        'description',
+        'status',
+        'userId',
+        [Sequelize.col('user.name'), 'userName'],
+        'createdAt',
+        'updatedAt',
+      ],
+      order: [['createdAt', upperCaseSort]],
+      include: { model: Users, as: 'user', attributes: [] },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: '상품 목록 조회에 성공했습니다.',
+      data: products,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: '예상치 못한 에러가 발생하였습니다. 관리자에게 문의하세요.',
+    });
+  }
+});
+
+// 상세 조회
+productsRouter.get('/:productId', async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    const product = await Products.findByPk(productId, {
+      attributes: [
+        'id',
+        'title',
+        'description',
+        'status',
+        'userId',
+        [Sequelize.col('user.name'), 'userName'],
+        'createdAt',
+        'updatedAt',
+      ],
+      include: { model: Users, as: 'user', attributes: [] },
+    });
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: '상품 조회에 실패했습니다.',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: '상품 목록 조회에 성공했습니다.',
+      data: product,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: '예상치 못한 에러가 발생하였습니다. 관리자에게 문의하세요.',
+    });
+  }
+});
+
 export { productsRouter };
