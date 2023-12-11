@@ -1,0 +1,14 @@
+@host = http://localhost:3000/api/products
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcwMjI1MTA0NSwiZXhwIjoxNzAyMjk0MjQ1fQ.RU07QXr5NXqOHWmOONq_WOfBKVZzeCRpQm9CsMEHycU
+
+
+### 상품 생성
+POST {{host}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+   "title": "킨더조이",
+   "description": "장난감이 들어 있는 초콜렛"
+}
+
